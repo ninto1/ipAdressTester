@@ -69,8 +69,9 @@ void writeResultsToFile(int replys[], int currentRep, string ip)
         }
         fclose(fp);
     }
-    else{
-        FILE* bufferFile = fopen("buffer.txt","a+");
+    else
+    {
+        FILE *bufferFile = fopen("buffer.txt", "a+");
         for (int i = 0; i < currentRep; i++)
         {
             string buff = ip;
@@ -85,28 +86,32 @@ void writeResultsToFile(int replys[], int currentRep, string ip)
         fclose(bufferFile);
     }
 }
-void finalizeSingleFile(string ip){
+void finalizeSingleFile(string ip)
+{
     string filename = ip + ".txt";
-        char fileNameC[17] = {'a'};
-        strcpy(fileNameC, filename.c_str());
+    char fileNameC[17] = {'a'};
+    strcpy(fileNameC, filename.c_str());
     string line;
     //Code from the internet. source: https://pencilprogrammer.com/cpp-programs/copy-one-file-to-another/
-    ifstream ini_file {"buffer.dat"};
-    ofstream out_file {fileNameC};
- 
-    if(ini_file && out_file){
- 
-        while(getline(ini_file,line)){
+    ifstream ini_file{"buffer.dat"};
+    ofstream out_file{fileNameC};
+
+    if (ini_file && out_file)
+    {
+
+        while (getline(ini_file, line))
+        {
             out_file << line << "\n";
         }
- 
-        #//cout << "Copy Finished \n";
- 
-    } else {
+
+#//cout << "Copy Finished \n";
+    }
+    else
+    {
         //Something went wrong
         printf("Cannot read File");
     }
- 
+
     //Closing file
     ini_file.close();
     out_file.close();
@@ -164,9 +169,11 @@ int main()
     printf("Save to seperate files, or one? (1 = one, 0 = multiple):");
     int files = -1;
     while (files < 0 || files > 1)
-        scanf("%d",&files);
-   if(files)oneFile = true;
-   else oneFile = false;
+        scanf("%d", &files);
+    if (files)
+        oneFile = true;
+    else
+        oneFile = false;
     printf("How many octets of the IP to input (the rest is generated):");
     int ipParts = 0;
     while (ipParts < 1 || ipParts > 3)
@@ -174,9 +181,11 @@ int main()
     string ip = getIp(ipParts);
     ipTestLoop(4 - ipParts, ip);
     string nameBuff = ip;
-    for(int i = 0;i<4-ipParts;i++)nameBuff+="x.";
-    if(oneFile)finalizeSingleFile(nameBuff);
+    for (int i = 0; i < 4 - ipParts; i++)
+        nameBuff += "x.";
+    if (oneFile)
+        finalizeSingleFile(nameBuff);
     int usefulInt;
-    scanf("%d",&usefulInt);
+    scanf("%d", &usefulInt);
     return 0;
 }
