@@ -71,7 +71,7 @@ void writeResultsToFile(int replys[], int currentRep, string ip)
     }
     else
     {
-        FILE *bufferFile = fopen("buffer.txt", "a+");
+        FILE *bufferFile = fopen("buffer.dat", "a+");
         for (int i = 0; i < currentRep; i++)
         {
             string buff = ip;
